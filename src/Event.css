@@ -1,0 +1,37 @@
+.event {
+}
+
+.event__title {
+  font-family: "Inter", sans-serif;
+  font-size: 112px;
+  font-style: italic;
+  letter-spacing: -10px;
+  margin: 64px 16px 32px 16px;
+}
+
+.event__buttonCont {
+  display: flex;
+  justify-content: space-around;
+}
+
+.event__button {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px var(--color-text-3) solid;
+  color: var(--color-text-3);
+  font-size: 16px;
+  padding-bottom: 8px;
+}
+
+.event__button:hover {
+  cursor: pointer;
+}
+
+.event__button--selected {
+  border-bottom: 2px var(--color-text-1) solid;
+  color: var(--color-text-1);
+}
+
+.event__cont {
+  margin: 16px;
+}
