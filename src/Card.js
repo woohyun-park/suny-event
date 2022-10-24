@@ -2,16 +2,17 @@ import "./Card.css";
 import styled from "styled-components";
 
 function Card({ data }) {
+  console.log(data);
   return (
     <Cont color={data.color} className="card">
       <div className="card__title">{data.title}</div>
       <div className="card__cont">
-        <div className="card__txt">{data.txt}</div>
+        <div className="card__txt">{data.description}</div>
         <div className="card__secondCont">
           <div className="card__time">
-            {data.time1}
+            {`${data.startDate} ${data.startTime}`}
             <br />
-            {data.time2}
+            {`${data.endDate} ${data.endTime}`}
           </div>
         </div>
       </div>
