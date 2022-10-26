@@ -1,0 +1,11 @@
+.eventDetail {
+  margin: 64px 16px 32px 16px;
+}
+
+.eventDetail__detail {
+  white-space: pre-wrap;
+}
+
+img {
+  width: 100%;
+}

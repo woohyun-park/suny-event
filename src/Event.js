@@ -1,26 +1,11 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import "./Event.css";
-
-import { initializeApp } from "firebase/app";
 import { getDatabase, ref, child, get } from "firebase/database";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBZO6s60gEqEGxMg6b0StkABcmB9oENjAg",
-  authDomain: "suny-event-72c95.firebaseapp.com",
-  databaseURL:
-    "https://suny-event-72c95-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "suny-event-72c95",
-  storageBucket: "suny-event-72c95.appspot.com",
-  messagingSenderId: "243040474480",
-  appId: "1:243040474480:web:7be9571cfbfcd5c0d56bb5",
-  measurementId: "G-80K2DLB4X1",
-};
 
 const buttons = ["upcoming", "ongoing", "finished"];
 
 function Event() {
-  const app = initializeApp(firebaseConfig);
   function getTime(date, time) {
     const result = new Date(date);
     time = time.split(":");
@@ -58,6 +43,7 @@ function Event() {
           buttons.forEach((each) => (result[each] = []));
           for (let key in tempEvents) {
             const each = tempEvents[key];
+            each.id = key;
             if (each.dateType === "0") {
               result[buttons[compareTime(each.startDate)]].push(each);
             } else if (each.dateType === "1") {
@@ -85,7 +71,7 @@ function Event() {
   }, []);
   return (
     <div className="event">
-      <h1 className="event__title">event</h1>
+      <h1 className="event__title">Events</h1>
       <div className="event__buttonCont">
         {buttons.map((each, i) => (
           <div
