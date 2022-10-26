@@ -21,7 +21,6 @@ const buttons = ["upcoming", "ongoing", "finished"];
 
 function Event() {
   const app = initializeApp(firebaseConfig);
-
   function getTime(date, time) {
     const result = new Date(date);
     time = time.split(":");
@@ -30,18 +29,45 @@ function Event() {
     );
     return result;
   }
+  function compareTime(startDate, endDate = null) {
+    const today = new Date();
+    today.setHours(9, 0, 0);
+    startDate = new Date(startDate);
+    if (!endDate) {
+      console.log(
+        today > startDate,
+        today.toLocaleString() == startDate.toLocaleString()
+      );
+      return today.toLocaleString() == startDate.toLocaleString()
+        ? 1
+        : today > startDate
+        ? 2
+        : 0;
+    } else {
+      endDate = new Date(endDate);
+    }
+  }
 
   const getEvent = () => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `events/`))
       .then((snapshot) => {
         if (snapshot.exists()) {
+          const tempEvents = snapshot.val();
           const result = {};
-          buttons.forEach((each) => (result[each] = {}));
-
-          for (let each in snapshot.val()) {
-            result.push(snapshot.val()[each]);
+          buttons.forEach((each) => (result[each] = []));
+          for (let key in tempEvents) {
+            const each = tempEvents[key];
+            if (each.dateType === "0") {
+              result[buttons[compareTime(each.startDate)]].push(each);
+            } else if (each.dateType === "1") {
+              result[buttons[compareTime(each.startDate, each.endDate)]].push(
+                each
+              );
+            }
+            console.log(result);
           }
+          console.log(result);
           setEvents(result);
         } else {
           console.log("No data available");
@@ -61,22 +87,22 @@ function Event() {
     <div className="event">
       <h1 className="event__title">event</h1>
       <div className="event__buttonCont">
-        {events &&
-          buttons.map((each, i) => (
-            <div
-              className={
-                i !== pageNum
-                  ? "event__button"
-                  : "event__button event__button--selected"
-              }
-              onClick={() => setPageNum(i)}
-            >
-              {each}
-            </div>
-          ))}
+        {buttons.map((each, i) => (
+          <div
+            className={
+              i !== pageNum
+                ? "event__button"
+                : "event__button event__button--selected"
+            }
+            onClick={() => setPageNum(i)}
+          >
+            {each}
+          </div>
+        ))}
       </div>
       <div className="event__cont">
-        {events && events.map((each) => <Card data={each} />)}
+        {events.length !== 0 &&
+          events[buttons[pageNum]].map((each) => <Card data={each} />)}
       </div>
     </div>
   );
