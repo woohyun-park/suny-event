@@ -17,37 +17,28 @@ const firebaseConfig = {
   measurementId: "G-80K2DLB4X1",
 };
 
-// const events = {
-//   ongoing: [
-//     {
-//       title: "Bingo Time",
-//       txt: "play bingo and earn prizes",
-//       time1: "22.10.12",
-//       time2: "12:30-13:30",
-//       color: "#0A356A",
-//     },
-//   ],
-//   upcoming: [
-//     {
-//       title: "Happy Light Tree",
-//       txt: "make a wish tree and write secret letters",
-//       time1: "",
-//       time2: "22.10.12 - 22.10.14",
-//       color: "#E0377A",
-//     },
-//   ],
-//   finished: [],
-// };
+const buttons = ["upcoming", "ongoing", "finished"];
 
 function Event() {
   const app = initializeApp(firebaseConfig);
+
+  function getTime(date, time) {
+    const result = new Date(date);
+    time = time.split(":");
+    result.setTime(
+      result.getTime() + (time[0] * 3600 + time[1] * 60 - 9 * 3600) * 1000
+    );
+    return result;
+  }
 
   const getEvent = () => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `events/`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          const result = [];
+          const result = {};
+          buttons.forEach((each) => (result[each] = {}));
+
           for (let each in snapshot.val()) {
             result.push(snapshot.val()[each]);
           }
@@ -61,7 +52,6 @@ function Event() {
       });
   };
 
-  const buttons = ["upcoming", "ongoing", "finished"];
   const [events, setEvents] = useState([]);
   const [pageNum, setPageNum] = useState(0);
   useEffect(() => {

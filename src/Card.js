@@ -2,7 +2,6 @@ import "./Card.css";
 import styled from "styled-components";
 
 function Card({ data }) {
-  console.log(data);
   return (
     <Cont color={data.color} className="card">
       <div className="card__title">{data.title}</div>
