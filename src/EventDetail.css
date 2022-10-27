@@ -16,6 +16,10 @@
   white-space: pre-wrap;
 }
 
+.eventDetail__back:hover {
+  cursor: pointer;
+}
+
 img {
   width: 100%;
 }
