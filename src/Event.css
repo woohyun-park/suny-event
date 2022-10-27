@@ -1,9 +1,17 @@
 .event__title {
   font-family: "Inter", sans-serif;
-  font-size: 112px;
+  font-weight: bold;
+  font-size: 92px;
+  line-height: 60px;
   font-style: italic;
   letter-spacing: -10px;
   margin: 64px 16px 32px 16px;
+}
+
+.event__suny {
+  color: rgb(0, 75, 147);
+  font-size: 64px;
+  letter-spacing: -7px;
 }
 
 .event__buttonCont {

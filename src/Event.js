@@ -71,7 +71,9 @@ function Event() {
   }, []);
   return (
     <div className="event">
-      <h1 className="event__title">Events</h1>
+      <h1 className="event__title">
+        <div className="event__suny">SUNY</div>EVENTS
+      </h1>
       <div className="event__buttonCont">
         {buttons.map((each, i) => (
           <div
