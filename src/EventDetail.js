@@ -26,7 +26,7 @@ function EventDetail({ app }) {
   return (
     <>
       <div className="eventDetail">
-        <h1>{event.title}</h1>
+        <h1 className="eventDetail__title">{event.title}</h1>
         <img src={event.image} />
         <div className="eventDetail__detail"> {event.detail}</div>
       </div>

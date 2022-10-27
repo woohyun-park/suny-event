@@ -2,6 +2,16 @@
   margin: 64px 16px 32px 16px;
 }
 
+.eventDetail__title {
+  width: 5%;
+  font-family: "Inter", sans-serif;
+  font-size: 48px;
+  font-style: italic;
+  letter-spacing: -4px;
+  line-height: 40px;
+  margin: 64px 16px 16px 0px;
+}
+
 .eventDetail__detail {
   white-space: pre-wrap;
 }

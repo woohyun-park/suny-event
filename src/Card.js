@@ -7,7 +7,7 @@ function Card({ data }) {
   return (
     <Link to={`/${data.id}`}>
       <Cont color={data.color} className="card" onClick={onClick}>
-        <div className="card__title">{data.title.toUpperCase()}</div>
+        <div className="card__title">{data.title}</div>
         <div className="card__cont">
           <div className="card__txt">{data.description}</div>
           <div className="card__secondCont">

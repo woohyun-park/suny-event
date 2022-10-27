@@ -24,6 +24,7 @@
   width: 64px;
   line-height: 38px;
   position: absolute;
+  font-style: italic;
 }
 
 .card__cont {
