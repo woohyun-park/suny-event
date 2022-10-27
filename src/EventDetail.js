@@ -31,7 +31,7 @@ function EventDetail({ app }) {
         <BiArrowBack
           className="eventDetail__back"
           size={28}
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/")}
         />
         <h1 className="eventDetail__title">{event.title}</h1>
         <img src={event.image} />
