@@ -22,7 +22,6 @@ const app = initializeApp(firebaseConfig);
 function App() {
   return (
     <div className="App">
-      {/* <Nav /> */}
       <Routes>
         <Route path="/" element={<Event app={app} />} />
         <Route path="/:eventId" element={<EventDetail app={app} />} />
